@@ -1,19 +1,58 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Gauge
+      :value="parseInt(value)"
+      :min="parseInt(min)"
+      :max="parseInt(max)"
+      :label="label"
+      :units="units"
+    />
+
+    <label for="value">
+      Value
+      <input type="range" name="value" v-model="value" />
+    </label>
+    <br />
+    <label for="min">
+      Min
+      <input type="range" name="min" v-model="min" />
+    </label>
+    <br />
+    <label for="max">
+      Max
+      <input type="range" name="max" v-model="max" />
+    </label>
+    <br />
+    <label for="label">
+      Label
+      <input type="text" name="label" v-model="label" />
+    </label>
+    <br />
+    <label for="units">
+      Units
+      <input type="text" name="units" v-model="units" />
+    </label>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Gauge from './components/Gauge.vue';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
-}
+    Gauge,
+  },
+  data() {
+    return {
+      value: 35,
+      min: 0,
+      max: 100,
+      label: 'Label',
+      units: 'Units',
+    };
+  },
+};
 </script>
 
 <style>
@@ -21,8 +60,8 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
 }
 </style>
